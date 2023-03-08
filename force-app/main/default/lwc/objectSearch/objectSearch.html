@@ -1,0 +1,32 @@
+<template>
+   <div class="slds-card">
+      <div class="slds-p-around_medium">
+            <lightning-combobox
+               label="Object Name"
+               options={searchOptionsNames}
+               placeholder="Account"
+               onchange={handleSobjectNameChange}>
+            </lightning-combobox>
+            <div class="slds-m-top_x-small">
+               <lightning-dual-listbox 
+                  label="fields"
+                  source-label="Available"
+                  selected-label="Selected"
+                  field-level-help="Select your fields"
+                  options={searchOptionsFields}
+                  onchange={handleSelectedFields}>
+               </lightning-dual-listbox>
+            </div>
+            <template if:true={selected}>
+               <div class="slds-m-top_x-small">
+                  <lightning-datatable
+                     key-field="id"
+                     columns={selectedFieldsMap}
+                     data={rows}
+                  >
+                  </lightning-datatable>
+               </div>
+            </template>
+      </div>
+   </div>
+</template>
